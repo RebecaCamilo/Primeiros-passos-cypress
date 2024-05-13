@@ -1,14 +1,16 @@
 import userData from "../fixtures/users/userData.json"
 import LoginPage from "../pages/loginPage"
 import DashboardPage from "../pages/dashboardPage"
+import MenuPage from "../pages/menuPage"
 
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage()
 
 describe('Orange HRM Tests', () => {
 
   const selectorsList = {
-    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+    
     firstNameField: "[name='firstName']",
     lastNameField: "[name='lastName']",
     genericField: ".oxd-input--active",
@@ -25,7 +27,11 @@ describe('Orange HRM Tests', () => {
 
     dashboardPage.checkDashboardPage()
 
-    cy.get(selectorsList.myInfoButton).click()
+    menuPage.accessMyInfo()
+
+
+
+    
     cy.get(selectorsList.firstNameField).clear().type("FirstName")
     cy.get(selectorsList.lastNameField).clear().type("LastName")
     cy.get(selectorsList.genericField).eq(3).clear().type("Employee")
