@@ -37,7 +37,7 @@ class MyInfoPage {
     }
 
     fillCustomFields(test) {
-        cy.get(this.selectorsList().genericComboBox).eq(2).click()
+        cy.get(this.selectorsList().genericComboBox).eq(2).click({ force: true })
         cy.get(':nth-child(5) > span').click({ force: true })
         cy.get(this.selectorsList().genericField).eq(9).clear().type(test)
     }
