@@ -27,7 +27,7 @@ class MyInfoPage {
     }
 
     fillPersonalDetails(birthday) {
-        cy.get(this.selectorsList().genericComboBox).eq(0).click()
+        cy.get(this.selectorsList().genericComboBox).eq(0).click({ force: true })
         cy.get(this.selectorsList().thirdItemComboBox).click()
         cy.get(this.selectorsList().genericComboBox).eq(1).click()
         cy.get(this.selectorsList().thirdItemComboBox).click()
