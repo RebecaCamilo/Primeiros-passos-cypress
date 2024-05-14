@@ -1,0 +1,21 @@
+{
+    "validNameInfoDetails": {
+      "firstName": "Miina",
+      "lastName": "Maria"
+    },
+
+    "validEmployeeInfoDetails": {
+      "employeeId": "1234",
+      "anotherId": "1010",
+      "numberLicense": "100",
+      "expirationDateLicense": "2025-05-01"
+    },
+
+    "validPersonalInfoDetails": {
+      "birthday": "1995-10-01"
+    },
+
+    "validCustomFieldsInfoDetails": {
+      "testField": "It is just a test"
+    }
+  }

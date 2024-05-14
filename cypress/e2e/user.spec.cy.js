@@ -1,11 +1,14 @@
 import userData from "../fixtures/users/userData.json"
+import userInfoData from "../fixtures/userInfo/userInfoData.json"
 import LoginPage from "../pages/loginPage"
 import DashboardPage from "../pages/dashboardPage"
 import MenuPage from "../pages/menuPage"
+import MyInfoPage from "../pages/myInfoPage"
 
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
+const myInfoPage = new MyInfoPage()
 
 describe('Orange HRM Tests', () => {
 
@@ -18,7 +21,7 @@ describe('Orange HRM Tests', () => {
     dateCloseButton: ".--close",
     saveButton: "[type='submit']",
     genericComboBox: ".oxd-select-text",
-    thirdItemComboBox: ":nth-child(3) > span"
+    thirdItemComboBox: ":nth-child(10) > span"
   }
 
   it.only('User Info Update - Success', () => { 
@@ -29,31 +32,21 @@ describe('Orange HRM Tests', () => {
 
     menuPage.accessMyInfo()
 
+    myInfoPage.fillPersonalDetails(userInfoData.validNameInfoDetails.firstName, userInfoData.validNameInfoDetails.lastName)
 
+    myInfoPage.fillEmployeeDetails(
+      userInfoData.validEmployeeInfoDetails.employeeId, 
+      userInfoData.validEmployeeInfoDetails.anotherId,
+      userInfoData.validEmployeeInfoDetails.numberLicense,
+      userInfoData.validEmployeeInfoDetails.expirationDateLicense,
+    )
 
-    
-    cy.get(selectorsList.firstNameField).clear().type("FirstName")
-    cy.get(selectorsList.lastNameField).clear().type("LastName")
-    cy.get(selectorsList.genericField).eq(3).clear().type("Employee")
-    cy.get(selectorsList.genericField).eq(4).clear().type("Id TEST")
-    cy.get(selectorsList.genericField).eq(5).clear().type("Driver's L Num")
-    cy.get(selectorsList.genericField).eq(8).clear().type("Test_Field TEST")
-    // cy.get(selectorsList.genericDateField).eq(0).clear().type("2025-05-01") // data 1
-    // cy.get(selectorsList.dateCloseButton).click()
-    // cy.get(selectorsList.saveButton).eq(0).click()
-    // cy.get("body").should("contain", "Successfully Updated")
-    // cy.get('.oxd-toast-close')
-    // cy.get(selectorsList.selectTextField).click();
-    // cy.get(selectorsList.selectTextField).eq(1)
-    // cy.get(selectorsList.selectTextField).eq(2)
-    // cy.get(selectorsList.genericComboBox).eq(0).click()
-    // cy.get(selectorsList.thirdItemComboBox).click()
-    // cy.get(selectorsList.genericComboBox).eq(1).click()
-    // cy.get(selectorsList.thirdItemComboBox).click()
-    // cy.get(selectorsList.genericComboBox).eq(2).click()
-    // cy.get(':nth-child(5) > span').click()
+    myInfoPage.fillPersonalDetails(userInfoData.validPersonalInfoDetails.birthday)
+
+    myInfoPage.fillCustomFields(userInfoData.validCustomFieldsInfoDetails.testField)
+
+    myInfoPage.saveForm()
   })
-
 
   it('Login - Fail', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
