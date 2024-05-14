@@ -12,18 +12,6 @@ const myInfoPage = new MyInfoPage()
 
 describe('Orange HRM Tests', () => {
 
-  const selectorsList = {
-    
-    firstNameField: "[name='firstName']",
-    lastNameField: "[name='lastName']",
-    genericField: ".oxd-input--active",
-    genericDateField: "[placeholder='yyyy-dd-mm']",
-    dateCloseButton: ".--close",
-    saveButton: "[type='submit']",
-    genericComboBox: ".oxd-select-text",
-    thirdItemComboBox: ":nth-child(10) > span"
-  }
-
   it.only('User Info Update - Success', () => { 
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
@@ -32,7 +20,7 @@ describe('Orange HRM Tests', () => {
 
     menuPage.accessMyInfo()
 
-    myInfoPage.fillPersonalDetails(userInfoData.validNameInfoDetails.firstName, userInfoData.validNameInfoDetails.lastName)
+    myInfoPage.fillNameDetails(userInfoData.validNameInfoDetails.firstName, userInfoData.validNameInfoDetails.lastName)
 
     myInfoPage.fillEmployeeDetails(
       userInfoData.validEmployeeInfoDetails.employeeId, 
